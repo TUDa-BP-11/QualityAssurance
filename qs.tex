@@ -29,7 +29,7 @@
 		M.Sc. Jens Heuschkel <heuschkel@tk.tu-darmstadt.de>\\
 		Telecooperation\\
 		Smart Urban Networks}
-	\titlerow{Abgabedatum}{01.12.2018}
+	\titlerow{Abgabedatum}{Februar 2019}
 \institution{Bachelor-Praktikum WS 2018/2019\\Fachbereich Informatik}}
 
 \begin{document}
@@ -58,50 +58,50 @@ Um solche extremen Schwankungen zu verhindern, müssen Mahlzeiten rechtzeitig er
     
 %		\textcolor{gray}{Beschreibung eines QS-Ziels und wieso dieses in diesem Projekt wichtig ist.}\\
 	\subsection{Beschreibung}
-Unser wichtigstes QS-Ziel ist die Korrektheit. Dies fällt unter ISO/IEC 9126 zur Sicherstellung der Softwarequalität, unter den Punkt Funktionalität mit dem Unterpunkt Richtigkeit.
-
-Diabetespatienten, die später unsere Software verwenden, vertrauen darauf, dass unser Ansatz korrekte Werte zurück gibt und Mahlzeiten richtig erkannt werden. Da ein zu hoher oder zu niedriger Insulinwert, wie bereits erläutert, schwere körperliche Langzeitfolgen haben oder sogar akut lebensbedrohlich sein kann, ist es offensichtlich, weshalb hier keine Fehler unterlaufen dürfen.
+Unser wichtigstes QS-Ziel ist die Korrektheit. Diabetespatienten, die später unsere Software verwenden, vertrauen darauf, dass unser Ansatz korrekte Werte zurück gibt und Mahlzeiten richtig erkannt werden. Da ein zu hoher oder zu niedriger Insulinwert, wie bereits erläutert, schwere körperliche Langzeitfolgen haben oder sogar akut lebensbedrohlich sein kann, ist es offensichtlich, weshalb hier keine Fehler unterlaufen dürfen.
 
 	\subsection{Maßnahmen}
 %		\textcolor{gray}{Maßnahme zum Erreichen des Ziels.}\\
-Wir wollen die Korrektheit durch verschiedene Maßnahmen erreichen. Darunter fallen unter anderem die Nutzung von regelmäßigen Coverity Scans und Travis CI. Travis CI eignet sich hier besonders, da wir an einem Open-Source-Projekt arbeiten, welches auf GitHub veröffentlicht wird. \footnote{\url{http://github.com/TUDa-BP-11/opendiabetes-uam-heuristik}}.
+Wir wollen die Korrektheit durch die folgenden Maßnahmen erreichen: Die Nutzung von automatischen Coverity Scans \footnote{\url{https://scan.coverity.com/}} und Travis CI \footnote{\url{https://travis-ci.org/}} (Continuous Integration). Travis CI kann kostenlos genutzt werden, da wir an einem Open-Source-Projekt arbeiten, welches auf GitHub \footnote{\url{http://github.com/TUDa-BP-11/opendiabetes-uam-heuristik}} veröffentlicht wird.
 
-Travis kompiliert die Software und überprüft automatisch alle Tests, die wir implementieren, und meldet zurück, ob diese erfolgreich abgeschlossen wurden. 
+Travis kompiliert die Software und überprüft automatisch alle implementierten Tests und meldet zurück, ob diese erfolgreich abgeschlossen wurden. 
 
 Coverity Scans analysieren den Code auf Race Conditions und Speicherlecks, bei denen zwar Arbeitsspeicher belegt, allerdings weder genutzt, noch frei gegeben wird. 
 
-Wir verwenden mehrere Branches für zu entwickelnde Features und einen Master-Branch, auf dem immer eine lauffähige Version liegt. Auf dem Master Branch kann nicht direkt gepusht werden, nur über die Feature-Branches. Es sind Pull-Request-Reviews und Status Checks nötig, um auf den Master-Branch zu schreiben. Diese Status Checks beinhalten das erfolgreiche compilen des Codes durch Travis-CI und den erflogreichen Durchlauf aller Tests. Erst im Anschluss können Pull-Requests akzeptiert werden. Wenn mindestens eine andere Person den Pull-Request überprüft und aktzeptiert hat, wird der Branch gemerged. Git führt einen Verlauf, wer den Pull-Request-Review freigegeben hat. Es wird somit immer protokolliert, wer Korrektur gelesen hat. Dieses Protokoll wird im Anhang zur Verfügung gestellt.
+Wir verwenden mehrere Branches für zu entwickelnde Features und einen Master-Branch, auf dem immer eine lauffähige Version liegt. Auf dem Master Branch kann nicht direkt gepusht werden, nur über die Feature-Branches. Es sind Pull-Request-Reviews und Status Checks nötig, um auf den Master-Branch zu schreiben. Diese Status Checks beinhalten das erfolgreiche Kompilieren des Codes durch Travis CI und den erfolgreichen Durchlauf aller Tests. Erst im Anschluss können Pull-Requests akzeptiert werden. Wenn mindestens eine andere Person den Pull-Request überprüft und akzeptiert hat, wird der Branch gemerged. Git führt einen Verlauf, wer den Pull-Request-Review freigegeben hat. Es wird somit immer protokolliert, wer Korrektur gelesen hat. Dieses Protokoll wird im Anhang zur Verfügung gestellt.
 
 
 	\subsection{Prozessbeschreibung}
 %		\textcolor{gray}{Prozessbeschreibung - wer führt wann die oben genannte Maßnahme durch und wie wird auf Probleme reagiert.}\\
-In GitHub gibt es einen Master-Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features und nach Abschluss von Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, dann wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
+In GitHub gibt es einen Master-Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features und nach Abschluss der Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
 
-Travis CI wird automatisch bei jedem Git-Commit ausgeführt. Dafür haben wir eine entsprechende .travis.yml Datei angelegt, damit bei jedem Commit Travis durchlaufen wird. Travis CI testet, ob das neue Commit noch compilebar ist und prüft definierte Tests. Schlägt einer der Tests fehl, werden wir per Mail informiert. Außerdem vergibt Travis CI Badges, anhand derer man in GitHub sehen kann, welche Tests korrekt durchlaufen. 
+Travis CI wird automatisch bei jedem Git-Commit ausgeführt. Dafür wurde eine entsprechende .travis.yml Datei angelegt. Travis CI testet, ob das neue Commit noch kompilierbar ist und prüft definierte Tests. Schlägt einer der Tests fehl, werden wir per E-Mail informiert. Außerdem vergibt Travis CI Badges, anhand derer in GitHub sichtbar ist, welche Branches in ihrem aktuellen Stand ohne Probleme kompiliert und getestet wurden. 
 
-Coverity lassen wir nur bei Commits auf den Coverity Branch testen, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master-Branch comitten. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn man weniger als 100.000 Zeilen Code hat. Mit steigender Codelänge darf man den Code immer seltener testen lassen, bei einer Länge von mehr als 1.000.000 Zeilen Code kann dieser nur noch einmal am Tag getestet werden. Hat man die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis oder Coverity Fehler aufwirft, müssen diese von demjenigen, der gepusht hat, verbessert werden. 
+Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master-Branch comitten. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn weniger als 100.000 Zeilen Code getestet werden. Wurden die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis oder Coverity Fehler erzeugen, müssen diese von demjenigen, der gepusht hat, verbessert werden. 
 
-Unit Tests werden von einem anderen Teammitglied geschrieben, damit eine neutrale Sicht auf den Code gewährleistet ist und man nicht mit der erwarteten Funktion des Features aus Entwicklersicht an die Tests geht. Gefundene Fehler werden von dem verbessert, der den Code geschrieben hat. Sollte man seinen Fehler nicht selber beheben können, wird natürlich die Hilfe der anderen Gruppenmitglieder in Anspruch genommen.
+Unit Tests werden von einem Teammitglied geschrieben, welches nicht den Code verfasst hat, damit eine neutrale Sicht auf den Code gewährleistet ist und die Tests nicht mit der erwarteten Funktion des Features aus Entwicklersicht entworfen werden.
 
-Die Tests bestehen aus statischen Unit-Tests, welche sich automatisch auf eine Test-Instanz von Nightscout verbinden und alle verfügbaren Features überprüfen. Abhängig vom Status und Inhalt der in Nightscout gespeicherten Daten werden dynamisch weitere Tests generiert, die den implementierten Algorithmus auf verschiedene Weisen testen. Dafür verwenden wir die in JUnit-5 integrierte dynamische Test-Generation. Auf diese Weise können wir Tests mit verschiedenen Beispieldaten problemlos mehrmals ausführen und auch die Möglichkeit anbieten, das Programm mit eigenen Testdaten zu überprüfen. Sollte die Test-Instanz von Nightscout einmal nicht verfügbar sein, oder unzureichende oder falsche Daten beinhalten, müssen die Tests mit eindeutigen Meldungen fehlschlagen und dem Benutzer mitteilen, wie die Fehler zu beheben sind. Nicht ausgeführte Tests auf Grund von fehlenden Daten in der Test-Instanz von Nightscout werden als nicht ausgeführt markiert, lassen den gesamten Test aber nicht fehlschlagen.
-\newpage 
+Die Tests bestehen aus statischen Unit-Tests, welche zunächst alle grundlegenden Funktionen testen, wie zum Beispiel das Korrekte Verbinden auf eine Nightscout Test Instanz und die volle Funktionalität der API-Schnittstelle. In einem zweiten Schritt werden - abhängig vom Status und Inhalt der in der Nightscout Test Instanz gespeicherten Daten - dynamisch weitere Tests generiert, die die implementierten Algorithmen auf verschiedene Weisen testen. Dafür verwenden wir die in JUnit-5 integrierte dynamische Test-Generation. Auf diese Weise können wir Tests mit verschiedenen Beispieldaten problemlos mehrmals ausführen und auch die Möglichkeit anbieten, das Programm mit eigenen Testdaten zu überprüfen. Sollte die Test-Instanz von Nightscout einmal nicht verfügbar sein, schlagen die Tests mit eindeutigen Meldungen fehl und teilen dem Benutzer mit, wie die Fehler zu beheben sind. Wenn auf der Nightscout Test Instanz unzureichende oder falsche Daten gespeichert sind, überprüfen die Tests, ob die Algorithmen korrekt abbrechen und dem Benutzer mitteilen, welche Probleme mit den verfügbaren Daten bestehen. Nicht ausgeführte Tests auf Grund von fehlenden Daten in der Nightscout Test Instanz  werden als nicht ausgeführt markiert, lassen den gesamten Test aber nicht fehlschlagen.
+
+\newpage
+
 \section{Erweiterbarkeit}
 
 \subsection{Beschreibung}
 
-Unser zweites QS-Ziel ist die Erweiterbarkeit. Dies fällt unter ISO/IEC 9126 zur Reduzierung des Aufwands die Software zu ändern. Unser Ziel ist es, ohne viel Aufwand neue Algorithmen zur Berechnung der Mahlzeiten einpflegen zu können, genauso wie neu Möglichkeiten Daten und Datenquellen einbinden zu können.
+Unser zweites QS-Ziel ist die Erweiterbarkeit. Dies fällt unter ISO/IEC 9126 zur Reduzierung des Aufwands die Software zu ändern. Unser Ziel ist es, ohne viel Aufwand neue Algorithmen zur Berechnung der Mahlzeiten einpflegen zu können sowie die Möglichkeit zu bieten neue Daten und Datenquellen einbinden zu können.
 
-Dies ist besonders sinnvoll, da unser Code einer Opensource-Community, unter der Lizenz AGPLv3, auf GitHub zur Verfügung steht. 
+Dies ist besonders sinnvoll, da unser Code einer Opensource-Community, unter der Lizenz AGPLv3, auf GitHub zur Verfügung steht und Mitglieder der Nightscout-Community (einschließlich Herrn Heuschkel) den Code wieder verwenden möchten.
 
-So ist es möglich, wenn neue Ansätze für eine bessere oder andere Berechnung von Mahlzeiten gefunden wurden, diese einfach zu implementieren und auszuführen, ohne dass das Hauptprogramm in irgendeiner Art und Weise geändert werden muss. Genauso können neue Datenquellen, wie zum Beispiel eine XML-Repräsentation der Daten, eingefügt werden.
+So ist es möglich, wenn neue Ansätze für eine bessere oder andere Berechnung von Mahlzeiten gefunden wurden, diese einfach zu implementieren und auszuführen, ohne dass das Hauptprogramm in irgendeiner Art und Weise geändert werden muss. Genauso können neue Datenquellen, wie zum Beispiel eine XML-Repräsentation der Daten statt der aktuellen JSON-Darstellung von Nightscout, eingefügt werden.
 
 \subsection{Maßnahmen}
 
-Um dies möglich zu machen stellen wir zunächst Wiki-Artikel zur Verfügung. In diesen erklären wir ausführlich, wie unsere Software zu verwenden und zu erweitern ist. Unsere Projektstruktur ist modular, sodass neue Algorithmen und Datenquellen einfach durch die Implementierung eines Interfaces hinzugefügt werden können. 
+Um dies möglich zu machen werden zunächst Github-Wiki-Artikel zur Verfügung gestellt \footnote{\url{https://github.com/TUDa-BP-11/opendiabetes-uam-heuristik/wiki}}. In diesen wird ausführlich erklärt, wie unsere Software zu verwenden und zu erweitern ist. Die Projektstruktur ist modular, sodass neue Algorithmen und Datenquellen einfach durch die Implementierung eines Interfaces hinzugefügt werden können. 
 
 \subsection{Prozessbeschreibung}
 
-Der Wiki-Artikel beschreibt auf englisch, Schritt für Schritt, wie man einen neuen Algorithmus implementieren kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste, ob diese vollständig sind. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
+Der Wiki-Artikel beschreibt auf englisch, Schritt für Schritt, wie man einen neuen Algorithmus implementieren kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste (siehe Anhang), ob diese vollständig sind. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
 
 Die Checkliste wird unter anderem folgende Punkte erhalten: Rechtschreibung, korrekter Satzbau, 
 
