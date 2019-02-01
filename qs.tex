@@ -29,7 +29,7 @@
 		M.Sc. Jens Heuschkel <heuschkel@tk.tu-darmstadt.de>\\
 		Telecooperation\\
 		Smart Urban Networks}
-	\titlerow{Abgabedatum}{01.12.2018}
+	\titlerow{Abgabedatum}{Februar 2019}
 \institution{Bachelor-Praktikum WS 2018/2019\\Fachbereich Informatik}}
 
 \begin{document}
@@ -73,11 +73,11 @@ Wir verwenden mehrere Branches für zu entwickelnde Features und einen Master-Br
 
 	\subsection{Prozessbeschreibung}
 %		\textcolor{gray}{Prozessbeschreibung - wer führt wann die oben genannte Maßnahme durch und wie wird auf Probleme reagiert.}\\
-In GitHub gibt es einen Master-Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features und nach Abschluss der Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
+In GitHub gibt es einen Master-Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features der Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
 
 Travis CI wird automatisch bei jedem Git-Commit ausgeführt. Dafür wurde eine entsprechende .travis.yml Datei angelegt. Travis CI testet, ob das neue Commit noch kompilierbar ist und prüft definierte Tests. Schlägt einer der Tests fehl, werden wir per E-Mail informiert. Außerdem vergibt Travis CI Badges, anhand derer in GitHub sichtbar ist, welche Branches in ihrem aktuellen Stand ohne Probleme kompiliert und getestet wurden. 
 
-Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master-Branch comitten. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn weniger als 100.000 Zeilen Code getestet werden. Wurden die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis oder Coverity Fehler erzeugen, müssen diese von demjenigen, der gepusht hat, verbessert werden. 
+Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master-Branch kommitten. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn weniger als 100.000 Zeilen Code getestet werden. Wurden die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis oder Coverity Fehler erzeugen, müssen diese von demjenigen, der gepusht hat, verbessert werden. 
 
 Unit Tests werden von einem Teammitglied geschrieben, welches nicht den Code verfasst hat, damit eine neutrale Sicht auf den Code gewährleistet ist und die Tests nicht mit der erwarteten Funktion des Features aus Entwicklersicht entworfen werden.
 
@@ -101,7 +101,7 @@ Um dies möglich zu machen werden zunächst Github-Wiki-Artikel zur Verfügung g
 
 \subsection{Prozessbeschreibung}
 
-Der Wiki-Artikel beschreibt auf englisch, Schritt für Schritt, wie man einen neuen Algorithmus implementieren kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste (siehe Anhang), ob diese vollständig sind. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
+Der Wiki-Artikel beschreibt auf englisch, Schritt für Schritt, wie man einen neuen Algorithmus implementieren kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste (siehe Anhang), ob diese vollständig sind und vollziehen die Schritte auf einem neuen System nach. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
 
 Die Checkliste wird unter anderem folgende Punkte erhalten: Rechtschreibung, korrekter Satzbau, 
 
