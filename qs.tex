@@ -15,6 +15,13 @@
 	\vspace{0.2cm}
 }
 
+% keine Worttrennung mit Bindestrich für die folgenden Worte
+\hyphenation{Nightscout}
+\hyphenation{Coverity}
+\hyphenation{Pull-Request}
+\hyphenation{GitHub}
+\hyphenation{Interface}
+
 \title{Open Diabetes UAM Heuristik Algorithmen}
 \subtitle{Qualitätssicherungsdokument}
 \subsubtitle{%
@@ -65,13 +72,15 @@ Wir verwenden mehrere Branches für zu entwickelnde Features und einen Master Br
 
 
 	\subsection{Prozessbeschreibung}
-In GitHub gibt es einen Master Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features und der Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
+In GitHub gibt es einen Master Branch. Entwickelt wird ausschließlich in sogenannten Feature Branches. Für jedes Feature bzw. jede Feature-Gruppe wird ein eigener Branch erstellt. Nach Abschluss des Features und der Iterationszyklen wird ein Pull-Request erstellt. Mindestens eine andere Person im Projekt kontrolliert die Änderungen im Pull-Request, bevor dieser akzeptiert wird. Werden Mängel oder Probleme entdeckt, löst diese die Person, die den Pull-Request erstellt hat. Treten dabei Probleme oder Schwierigkeiten auf, wird die Hilfe der Teammitglieder in Anspruch genommen. Danach werden die Änderungen erneut von mindestens einer anderen Person kontrolliert, bis keine Mängel mehr gefunden werden und der Branch in den Master Branch gemerged werden kann. 
 
-Travis CI wird automatisch bei jedem Git-Commit ausgeführt. Dafür wurde eine entsprechende .travis.yml Datei angelegt. Travis CI kompiliert die Software und prüft definierte Tests. Schlägt einer der Tests fehl, werden wir per E-Mail informiert. Außerdem vergibt Travis CI Badges, anhand derer in GitHub sichtbar ist, welche Branches in ihrem aktuellen Stand ohne Probleme kompiliert und getestet wurden.
+Travis CI wird automatisch bei jedem Git-Commit ausgeführt. Dafür wurde eine entsprechende .travis.yml Datei angelegt. Travis CI kompiliert die Software und startet alle implementierten Tests. Schlägt einer der Tests fehl, werden wir per E-Mail informiert. Außerdem vergibt \mbox{Travis CI} Badges, anhand derer in GitHub sichtbar ist, welche Branches in ihrem aktuellen Stand ohne Probleme kompiliert und getestet wurden.
 
-Die Tests bestehen aus statischen Unit-Tests, welche zunächst alle grundlegenden Funktionen testen, wie zum Beispiel das Korrekte Verbinden auf eine Nightscout Test Instanz und die volle Funktionalität der API-Schnittstelle. In einem zweiten Schritt werden - abhängig vom Status und Inhalt der in der Nightscout Test Instanz gespeicherten Daten - dynamisch weitere Tests generiert, die die implementierten Algorithmen auf verschiedene Weisen testen. Dafür verwenden wir die in JUnit-5 integrierte dynamische Test-Generation. Auf diese Weise können wir Tests mit verschiedenen Beispieldaten problemlos mehrmals ausführen und auch die Möglichkeit anbieten, das Programm mit eigenen Testdaten zu überprüfen. Sollte die Test-Instanz von Nightscout einmal nicht verfügbar sein, schlagen die Tests mit eindeutigen Meldungen fehl und teilen dem Benutzer mit, wie die Fehler zu beheben sind. Wenn auf der Nightscout Test Instanz unzureichende oder falsche Daten gespeichert sind, überprüfen die Tests, ob die Algorithmen korrekt abbrechen und dem Benutzer mitteilen, welche Probleme mit den verfügbaren Daten bestehen. Nicht ausgeführte Tests auf Grund von fehlenden Daten in der Nightscout Test Instanz  werden als nicht ausgeführt markiert, lassen den gesamten Test aber nicht fehlschlagen.
+Die Tests bestehen aus statischen Unit-Tests, welche zunächst alle grundlegenden Funktionen testen, wie zum Beispiel das korrekte Verbinden auf eine Nightscout Test Instanz und die volle Funktionalität der API-Schnittstelle. Außerdem werden alle verwendeten mathematischen Modelle - zum Beispiel zur Berechnung von Insulinabbau über Zeit im Blutkreislauf - mit festen Testdaten auf Korrektheit überprüft. Diese Testdaten wurden zuvor unabhängig von der Implementierung der Funktionen berechnet, wir testen die Funktionen also nicht mit Werten, die durch die Funktionen selbst generiert wurden. In einem zweiten Schritt werden - abhängig vom Status und Inhalt der in der Nightscout Test Instanz gespeicherten Daten - dynamisch weitere Tests generiert, die die implementierten Algorithmen auf verschiedene Weisen testen. Dies ist stark von den jeweiligen Algorithmen abhängig, wir testen aber mindestens jede offen verfügbare (\texttt{public}) Methode. Dafür verwenden wir die in JUnit-5 integrierte dynamische Test-Generation. Auf diese Weise können wir Tests mit verschiedenen Beispieldaten problemlos mehrmals ausführen und auch die Möglichkeit anbieten, das Programm mit eigenen Testdaten zu überprüfen.
 
-Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master Branch committen. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn weniger als 100.000 Zeilen Code getestet werden. Wurden die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis CI oder Coverity Fehler erzeugen, müssen diese von demjenigen, der gepusht hat, verbessert werden. 
+Sollte die Test Instanz von Nightscout einmal nicht verfügbar sein, schlagen die Tests mit eindeutigen Meldungen fehl und teilen dem Benutzer mit, wie die Fehler zu beheben sind. Wenn auf der Nightscout Test Instanz unzureichende oder falsche Daten gespeichert sind, überprüfen die Tests, ob die Algorithmen korrekt abbrechen und dem Benutzer mitteilen, welche Probleme mit den verfügbaren Daten bestehen. Nicht ausgeführte Tests auf Grund von fehlenden Daten in der Nightscout Test Instanz  werden als nicht ausgeführt markiert, lassen den gesamten Test aber nicht fehlschlagen.
+
+Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzung von Coverity beschränkt ist. Dies führen wir durch, bevor wir auf den Master Branch committen. Die Anzahl der Builds pro Woche ist auf 28 mit maximal 4 Tests am Tag beschränkt, wenn weniger als 100.000 Zeilen Code getestet werden. Wurden die maximale Anzahl der Builds pro Tag erreicht, werden weitere Builds an dem entsprechenden Tag abgelehnt. Wenn Travis CI oder Coverity Fehler erzeugen, müssen diese von demjenigen, der gepusht hat, behoben werden. 
 
 \newpage
 
@@ -81,7 +90,7 @@ Coverity wird nur bei Commits auf den Coverity Branch ausgeführt, da die Nutzun
 
 Unser zweites QS-Ziel ist die Erweiterbarkeit. Diese fällt unter ISO/IEC 9126 zur Reduzierung des Aufwands die Software zu ändern. Unser Ziel ist es, ohne viel Aufwand neue Algorithmen zur Berechnung der Mahlzeiten einpflegen zu können, sowie die Möglichkeit zu bieten neue Daten und Datenquellen einbinden zu können.
 
-Dies ist besonders sinnvoll, da unser Code einer Opensource-Community, unter der Lizenz AGPLv3, auf GitHub zur Verfügung steht und Mitglieder der Nightscout-Community (einschließlich Herrn Heuschkel) den Code wieder verwenden möchten.
+Dies ist besonders sinnvoll, da unser Code einer Opensource-Community, unter der Lizenz \mbox{AGPLv3}, auf GitHub zur Verfügung steht und Mitglieder der Nightscout-Community (einschließlich Herrn Heuschkel) den Code wieder verwenden möchten.
 
 So ist es möglich, wenn neue Ansätze für eine bessere oder andere Berechnung von Mahlzeiten gefunden wurden, diese einfach zu implementieren und auszuführen, ohne dass das Hauptprogramm geändert werden muss. Genauso können neue Datenquellen, wie zum Beispiel eine XML-Repräsentation der Daten statt der aktuellen JSON-Darstellung von Nightscout, eingefügt werden.
 
@@ -93,13 +102,13 @@ Wie bereits beim Ziel der Korrektheit beschrieben, werden Pull-Requests auf den 
 
 \subsection{Prozessbeschreibung}
 
-Der Wiki-Artikel beschreibt auf englisch, Schritt für Schritt, wie ein neuer Algorithmus implementieren werden kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste (siehe Anhang), ob diese vollständig sind und vollziehen die Schritte auf einem neuen System nach. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
+Der Wiki Artikel beschreibt auf englisch, Schritt für Schritt, wie ein neuer Algorithmus implementieren werden kann. Dies wird exemplarisch an einem unserer Algorithmen gezeigt. Die Artikel werden von zwei Projektmitgliedern geschrieben. Mindestens zwei andere Mitglieder lesen diese Korrektur und überprüfen anhand einer Checkliste (siehe Anhang), ob diese vollständig sind und vollziehen die Schritte auf einem neuen System nach. Dies ist erreicht, wenn der Algorithmus nach der Ausführung der Anleitung lauffähig ist.
 
 Sowohl für die Algorithmen als auch für die Datenquellen verwenden wir das Strategy Pattern \footnote{\url{https://en.wikipedia.org/wiki/Strategy_pattern}} um während der Laufzeit verschiedene Algorithmen und Datenquellen zu laden. Diese kommunizieren ausschließlich über ihr jeweiliges Strategie Interface miteinander und mit dem Hauptprogramm.
 
-Häufig benutze Funktionen - wie zum Beispiel das Berechnen von Insulinabbau über Zeit im Blutkreislauf - welche in verschiedenen Algorithmen benötigt werden, werden in eigene Klassen ausgelagert. Dies ermöglicht es viele Funktionen in verschiedenen Algorithmen wieder zu verwenden und diese unabhängig von den Algorithmen zu testen.
+Häufig benutze Funktionen und die Implementierungen der verwendeten mathematischen Modelle, welche in verschiedenen Algorithmen benötigt werden, werden in eigene Klassen ausgelagert. Dies ermöglicht es viele Funktionen in verschiedenen Algorithmen wieder zu verwenden und diese unabhängig von den Algorithmen zu testen.
 
-Die Datenquellen beinhalten einen unabhängig verwendbaren Parser, welcher ebenfalls ein Interface erweitert und mit dem Template Method Pattern das direkte Analysieren von Strings und die Verwendung von normalen Textdateien als Quelle ermöglicht. Dieser Parser kann die JSON-Repräsentation der Daten von Nightscout übersetzen, weitere Parser können problemlos hinzugefügt werden. Zur Repräsentation der Daten im Programm benutzen wir verschiedene vom Auftraggeber vorgegebene Datenklassen, welche auch in anderen Projekten verwendet werden. Alle Algorithmen und Datenquellen benutzen ausschließlich diese Klassen, um miteinander zu kommunizieren.
+Die Datenquellen beinhalten einen unabhängig verwendbaren Parser, welcher ebenfalls ein Interface erweitert und mit dem Template Method Pattern das direkte Analysieren von Strings und die Verwendung von normalen Textdateien als Quelle ermöglicht. Dieser Parser kann die JSON-Repräsentation der Daten von Nightscout übersetzen, weitere Parser können problemlos hinzugefügt werden. Zur Repräsentation der Daten im Programm benutzen wir verschiedene vom Auftraggeber vorgegebene Datenklassen, welche auch in anderen Projekten des Auftraggebers verwendet werden. Alle Algorithmen und Datenquellen benutzen ausschließlich diese Klassen, um miteinander zu kommunizieren, und ermöglichen dadurch ebenso unser Programm mit anderen vom Auftraggeber verwendeten Programmen zu kombinieren.
 
 Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollierende Person darauf, dass die verwendeten Entwurfsmuster korrekt umgesetzt wurden, und zum Beispiel ein Algorithmus nicht direkt Daten an das Hauptprogramm weiter gibt sondern dies nur über das dafür vorgesehene Strategie Interface passiert. Die im Anhang enthaltene Checkliste beinhaltet auch die hierfür wichtigen Punkte.
 	        
@@ -111,5 +120,11 @@ Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollier
 		
 		\textcolor{gray}{Beleg für durchgeführte Maßnahmen, bzw. falls nicht durchgeführt eine Begründung wieso die Durchführung nicht möglich oder nicht erfolgt ist. \\
 		Weitere Anforderungen sind den Unterlagen und der Vorlesung zur Projektbegleitung zu entnehmen.}
+	
+	\section{Pull-Request-Review Checkliste}
+	
+	\section{Pull-Request-Review Protokoll}
+	
+	\section{GitHub Wiki Artikel Checkliste}
 	
 \end{document}
