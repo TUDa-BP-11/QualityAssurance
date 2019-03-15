@@ -34,20 +34,9 @@
 	\maketitle
 	\tableofcontents 
 	\newpage
-	\chapter{Zielbestimmnung}
+	\chapter{Zielbestimmung}
 	
-	Das Projekt Open Diabetes UAM Heuristik Algorithmen entwickelt ein Programm zur richtigen Erkennung von Mahlzeiten anhand der Blutwerte die ein Sensor bei Insulinpatienten misst. Anhand dieser Daten soll die Höhe und der richtige Zeitpunkt für die nächste Insulindosis bestimmt werden. Nightscout stellt dabei eine Onlineplattform zur grafischen Darstellung der Werte dar. 
-	\section{Analyse}
-
-Für das Projekt stehen folgende Infrastrukturen zur Verfügung: 
-\begin{itemize}
-	\item Anonymisierte Patientendaten zum Testen der Ansätze
-	\item Nightscout um eigene Instanzen aufzusetzen 
-	\item Beschreibungen der Tools
-	\item Paper mit Ansätzen zur Berechnung der Insulin- und Kohlenhydratwerte
-\end{itemize}
-	
-	\section{Soll Analyse}
+	Das Projekt Open Diabetes UAM Heuristik Algorithmen entwickelt ein Programm zur richtigen Erkennung von Mahlzeiten anhand von Blutwerten, die in einer Nightscout Datenbank gespeichert sind. Dies soll das richtige setzen von notwendigen Insulindosen ermöglichen. Nightscout stellt dabei eine Onlineplattform zur grafischen Darstellung der Werte dar. \\
 
 Folgende Punkte müssen implementiert bzw. erstellt werden:
 
@@ -63,21 +52,31 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:
 		\item Carbs on board
 		\item Basalwerte
 	\end{itemize}
+	\item (mind. 1) Algorithmus zur Erkennung von Mahlzeiten entwickeln und implementieren
 	\item Wikiartikel der die Algorithmen und mögliche Einstellungsfaktoren beschreibt
 	\item Plotten der Daten
 	\item Modifikation von Nightscout um berechnete Kohlenhydrate getrennt von tatsächlichen darstellen zu können.
+\end{itemize}	
+	\section{Ausgangslage}
+
+Für das Projekt stehen folgende Infrastrukturen zur Verfügung: 
+\begin{itemize}
+	\item Anonymisierte Patientendaten zum Testen der Ansätze
+	\item Nightscout um eigene Instanzen aufzusetzen 
+	\item Beschreibungen der Tools
+	\item Paper mit Ansätzen zur Berechnung der Insulin- und Kohlenhydratwerte
 \end{itemize}
-	
+		
 	\section{Anforderungen}
 	\subsection{funktional}
 \begin{itemize}
-	\item Das Programm muss Mahlzeiten korrekt platzieren um den Insulinspiegel konstant zu halten
+	\item Das Programm muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%.
 	\item  
 \end{itemize}
 	
 	\subsection{nicht-funktional}
 \begin{itemize}
-	\item Das Programm muss auf einem PI Zero in angemessener Zeit laufen
+	\item Die Datenvisualisierung der Mahlzeiten muss hübsch sein  (lol !!! wird noch geändert !!!!)
 \end{itemize}
 	
 	\chapter{Grobarchitektur}
