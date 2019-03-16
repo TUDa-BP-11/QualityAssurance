@@ -36,28 +36,51 @@
 	\newpage
 	\chapter{Zielbestimmung}
 	
-	Das Projekt Open Diabetes UAM Heuristik Algorithmen entwickelt ein Programm zur richtigen Erkennung von Mahlzeiten anhand von Blutwerten, die in einer Nightscout Datenbank gespeichert sind. Dies soll das richtige setzen von notwendigen Insulindosen ermöglichen. Nightscout stellt dabei eine Onlineplattform zur grafischen Darstellung der Werte dar. \\
+	Das Projekt Open Diabetes UAM Heuristik Algorithmen entwickelt ein Programm zur richtigen Erkennung von Mahlzeiten anhand von Blutwerten, die in einer Nightscout Datenbank gespeichert sind. 
+	%Dies soll das richtige setzen von notwendigen Insulindosen ermöglichen. 
+	Nightscout stellt dabei eine Onlineplattform zur grafischen Darstellung der Werte dar. \\
 
-Folgende Punkte müssen implementiert bzw. erstellt werden:
+Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 
+\title{\textbf{Must-Have:}}
 \begin{itemize}
-	\item Skript das die Daten aus den Nightscout Instanzen ausliest und wieder zurück schreibt
-	\item Parser der den Datensatz und die Daten aus dem Skript in Java überführt
-	\item Wikiartikel wie die Daten aus Nightscout auf unsere Daten abgebildet werden
+	\item Skript zum Lesen und Schreiben von Daten in einer Nightscout Instanz	
 	\item Kommandozeilentool zum Lesen, Schreiben und Synchronisieren von Nightscout
-	\item Wikiartikel mit einer Anleitung für das Kommandozeilentool
-	\item Berechnung von:
+	\item Parser zum Überführen von Datensätzen aus dem Skript in Java
+	\item Algorithmus zur korrekten Berechnung von Kohlenhydraten
+	\item Modifikation von Nightscout um angekündigte und berechnete Kohlenhydrate getrennt speichern  zu können.      %und darstellen
+	\item Plotten der Daten 
+	\item Kommandozeilentool, das Daten einliest und berechnete Kohlenhydrate und Plots ausgibt
+	\item Docker-Container der zum Programmstart einen Datensatz einliest, den Algorithmus ausführt und berechnete Kohlenhydrate und Plots ausgibt
+
+	\item Wikiartikel:
 	\begin{itemize}
-		\item Insulin on board
-		\item Carbs on board
-		\item Basalwerte
+	\item Anleitung für das Kommandozeilentool
+	\item Erklärung wie die Daten aus Nightscout auf unsere Daten abgebildet werden
+	\item Algorithmen und mögliche Einstellungsfaktoren
+	\item Anleitung zum Aufsetzen und Einstellen von lokalen Nightscout Instanze die mit dem Tool funktionieren
 	\end{itemize}
-	\item (mind. 1) Algorithmus zur Erkennung von Mahlzeiten entwickeln und implementieren
-	\item Wikiartikel der die Algorithmen und mögliche Einstellungsfaktoren beschreibt
-	\item Plotten der Daten
-	\item Modifikation von Nightscout um berechnete Kohlenhydrate getrennt von tatsächlichen darstellen zu können.
-\end{itemize}	
-	\section{Ausgangslage}
+
+\end{itemize}
+
+\title{\textbf{Should-Have:}}
+
+\begin{itemize}	
+	\item Nightscout Repository modifizieren 
+
+
+%* Die Nightscout-Repots sollten modifiziert werden um im Tagesprofil
+%** IOB korrekt anzuzeigen
+%** COB korrekt anzuzeigen
+%** neben dem Zielbereich eine "gelbe" Zone auszuwerten
+%** berechnete Carbs anzuzeigen
+%* Dokumentation der Nichtscout Modifikationen
+
+
+	
+\end{itemize}
+	
+	\chapter{Ausgangslage}
 
 Für das Projekt stehen folgende Infrastrukturen zur Verfügung: 
 \begin{itemize}
@@ -67,7 +90,7 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 	\item Paper mit Ansätzen zur Berechnung der Insulin- und Kohlenhydratwerte
 \end{itemize}
 		
-	\section{Anforderungen}
+	\chapter{Anforderungen}
 	\subsection{funktional}
 \begin{itemize}
 	\item Das Programm muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%.
