@@ -70,16 +70,24 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 \item Dokumentation der Nightscout Modifikationen
 %* Die Nightscout-Repots sollten modifiziert werden um im Tagesprofil
 %** 
-%**
 %** neben dem Zielbereich eine "gelbe" Zone auszuwerten		???
-%**
-%* 
-
-
-	
+%* 	
 \end{itemize}
+
 	
-	\chapter{Ausgangslage}
+ 	\chapter{Einsatz}
+	
+	\textbf{{\large TODO}}\\
+	
+	Das Projekt dient als Prototyp zur Lösung des Unannounced-Meal-Problems. 
+		
+	 Wir liefern einen beispielhaften Algorithmus, mit dem man Mahlzeiten anhand von steigenden Blutzuckerspiegeln finden kann. 
+	
+	%Es kann zur Inspiration zur Entwicklung von so genannten Closed-Loop Systemen, die die Insulinversorgung automatisch durchführen, verwendet werden. 
+	Außerdem können die einzelnen Bauteile, wie das Synchronizations-Tool für Nightscout Instanzen bei anderen Nightscout Projekten wiederverwendet werden.
+
+		
+{\let\clearpage\relax	\chapter{Ausgangslage}}
 
 Für das Projekt stehen folgende Infrastrukturen zur Verfügung: 
 \begin{itemize}
@@ -88,30 +96,43 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 	\item Beschreibungen der Tools
 	\item Paper mit Ansätzen zur Berechnung der Insulin- und Kohlenhydratwerte
 \end{itemize}
-		
-{\let\clearpage\relax 	\chapter{Anforderungen}}
+	
+	
+{\let\clearpage\relax	\chapter{Produktübersicht}}
+	
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{architektur.png}
+\end{center}
+
+
+Daten? \textbf{{\large TODO}}
+
+	
+
+ \chapter{Anforderungen}
 	\section{funktional}
 \begin{itemize}
 	\item Das Programm muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%.
-	\item  
 \end{itemize}
+	\textbf{{\large TODO}}
 	
 	\section{nicht-funktional}
 \begin{itemize}
 	\item Die Datenvisualisierung der Mahlzeiten muss hübsch sein  (lol !!! wird noch geändert !!!!)
 \end{itemize}
+	\textbf{{\large TODO}}
 	
-	\chapter{Grobarchitektur}
-	
-	\centering
-\includegraphics[width=0.7\textwidth]{architektur.png}
-	
-	\section{Qualitätssicherung}
+{\let\clearpage\relax	\chapter{Qualitätssicherung}}
+
 	Siehe QS-Dokument.
+
 	
-	\section{Risikomanagement}
+{\let\clearpage\relax	\chapter{Risikomanagement}}
+
+notwendig?  \textbf{{\large TODO}}
 	
-	\section{Rechtliches}
+{\let\clearpage\relax	\chapter{Rechtliches}}
 	
 	Wir entwickeln unter der AGPLv3-Lizenz und verwenden nur Open-Source Quellen. Dadurch vermeiden wir Copy-Right-Verletzungen und schließen jede Garantie an unserem Code aus.
 	
