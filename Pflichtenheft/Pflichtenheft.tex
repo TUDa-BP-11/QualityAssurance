@@ -77,14 +77,11 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 	
  	\chapter{Einsatz}
 	
-	\textbf{{\large TODO}}\\
+	Die Open Source Community OpenAPS unterstüzt Versuche eine künstliche Bauchspeicheldrüse zu entwickeln. Bisherige Systeme können die Grundversorgong an Insulin automatisch an die gemessenen Blutzuckerwerte anpassen. Eine komplett automatische Insulinversorgung ist allerdings noch nicht gelungen, hauptsächlich wegen des Unannounced-Meal (kurz UAM) Problems. Zu jeder Mahlzeit muss zusätzliches Insulin verabreicht werden, um zu hohe Blutzuckerwerte zu verhindern. Da die üblichen Insulinsorten langsamer auf den Blutzuckerspiegel wirken als Mahlzeiten, ist es essenziell, dass diese Dosis so früh wie möglich verabreicht wird. In einem vollständig automatischen System besteht also die Notwendigkeit Mahlzeiten zu erkennen.
 	
-	Das Projekt dient als Prototyp zur Lösung des Unannounced-Meal-Problems. 
-		
-	 Wir liefern einen beispielhaften Algorithmus, mit dem man Mahlzeiten anhand von steigenden Blutzuckerspiegeln finden kann. 
+	Unser Projekt dient als Prototyp zur Lösung des UAM Problems. Wir liefern einen beispielhaften Algorithmus, der die Menge einer Mahlzeit anhand der Steigung des Blutzuckerspiegels annähert. Unser Programm kann außerdem mit weiteren Algorithmen erweitert werden, und bietet so eine Umgebung zum Testen von verschiedenen Ansätzen. Unser Projekt ist auf Nightscout ausgelegt, auf dem viele künstliche Bauchspeicheldrüsen-Systeme basieren. In Nightscout können kostenlos mehrere Monate an Daten speichert werden, an denen die Mahlzeitenerkennung getestet werden kann, ohne die Gesundheit einer Person direkt zu gefährden. 
 	
-	%Es kann zur Inspiration zur Entwicklung von so genannten Closed-Loop Systemen, die die Insulinversorgung automatisch durchführen, verwendet werden. 
-	Außerdem können die einzelnen Bauteile, wie das Synchronizations-Tool für Nightscout Instanzen bei anderen Nightscout Projekten wiederverwendet werden.
+	Außerdem können die einzelnen Bauteile, wie das Synchronizations-Tool für Nightscout Instanzen auch separat wiederverwendet werden.
 
 		
 {\let\clearpage\relax	\chapter{Ausgangslage}}
