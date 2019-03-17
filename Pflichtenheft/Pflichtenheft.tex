@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
 \usepackage{parcolumns}
+\usepackage{verbatim}
+\usepackage{hyperref}
 
 \newcommand{\titlerow}[2]{
 	\begin{parcolumns}[colwidths={1=.15\linewidth}]{2}
@@ -90,8 +92,8 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 \begin{itemize}
 	\item Anonymisierte Patientendaten zum Testen der Ansätze
 	\item Nightscout um eigene Instanzen aufzusetzen 
-	\item Beschreibungen der Tools
-	\item Paper mit Ansätzen zur Berechnung der Insulin- und Kohlenhydratwerte
+	\item Beschreibungen der Tools						% wait, welche Tools?
+	\item Paper mit Modell zum Einfluss von Insulin und Kohlenhydrate auf den Blutzuckerspiegel
 \end{itemize}
 	
 	
@@ -110,13 +112,25 @@ Daten? \textbf{{\large TODO}}
  \chapter{Anforderungen}
 	\section{funktional}
 \begin{itemize}
-	\item Das Programm muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%.
+	\item Der Algorithmus muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen.  %Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%. 
+	 Überprüft wird das an dem gegebenem Datensatz, auf Abschnitten wo über einen Zeitraum von mindestens 6 Stunden durchgehend Blutzuckerdaten vorhanden sind. Also wo Messungen mindestens alle 5 Minuten vorkommen. Da die zu erkennenden Mahlzeiten nicht markiert sind, und dadurch ein direkter Vergleich nicht möglich ist, wird ein Blutzuckerverlauf anhand der bekannten Events und der berechneten Mahlzeiten generiert. Dieser soll zu jedem Zeitpunkt höchstens 10mg/ml von dem originalen Blutzuckerverlauf abweichen. Eine höhere Abweichung wird toleriert, wenn der Abschnitt eindeutig seltsames Verhalten aufweist, z.B. einen plötzlichen Einbruch des Blutzuckerspiegels.
+	
+ \begin{comment}
+ich hatte funktionale Anforderungen falsch in Erinnerung, ich lasse dass mal hier stehen, falls ich das wo anders brauche 
+ 	
+	\item Alle Programmteile müssen gegen die API programmiert sein die der Arbeitgeber bereitstellt
+	\item Zum Parsen von Argumenten soll die Library \url{http://www.martiansoftware.com/jsap/} verwendet werden.
+	\item Für das Plotten der Daten soll Python-Matplotlib verwendet werden
+	\item Bei dem Kommandozeilentool, das Daten einliest und berechnete Kohlenhydrate und Plots ausgibt, sollen die Einträge in einem Format sein, dass mit dem anderen Tool zu Nightscout hochgeladen werden kann.
+\end{comment}	
+	
 \end{itemize}
-	\textbf{{\large TODO}}
+	\textbf{{\large TODO ARRRRGH}}
 	
 	\section{nicht-funktional}
 \begin{itemize}
-	\item Die Datenvisualisierung der Mahlzeiten muss hübsch sein  (lol !!! wird noch geändert !!!!)
+	\item Das Programm muss auf einem PI Zero in angemessener Zeit laufen
+	
 \end{itemize}
 	\textbf{{\large TODO}}
 	
