@@ -46,7 +46,7 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 
 \title{\textbf{Must-Have:}}
 \begin{itemize}
-	\item Skript zum Lesen und Schreiben von Daten in einer Nightscout Instanz	
+	\item Skript zum Lesen und Schreiben von Daten in eine Nightscout Instanz	
 	\item Kommandozeilentool zum Lesen, Schreiben und Synchronisieren von Nightscout
 	\item Parser zum Überführen von Datensätzen aus dem Skript in Java
 	\item Algorithmus zur korrekten Berechnung von Kohlenhydraten
@@ -79,7 +79,7 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 	
  	\chapter{Einsatz}
 	
-	Die Open Source Community OpenAPS unterstüzt Versuche eine künstliche Bauchspeicheldrüse zu entwickeln. Bisherige Systeme können die Grundversorgong an Insulin automatisch an die gemessenen Blutzuckerwerte anpassen. Eine komplett automatische Insulinversorgung ist allerdings noch nicht gelungen, hauptsächlich wegen des Unannounced-Meal (kurz UAM) Problems. Zu jeder Mahlzeit muss zusätzliches Insulin verabreicht werden, um zu hohe Blutzuckerwerte zu verhindern. Da die üblichen Insulinsorten langsamer auf den Blutzuckerspiegel wirken als Mahlzeiten, ist es essenziell, dass diese Dosis so früh wie möglich verabreicht wird. In einem vollständig automatischen System besteht also die Notwendigkeit Mahlzeiten zu erkennen.
+	Die Open Source Community OpenAPS unterstüzt Versuche eine künstliche Bauchspeicheldrüse zu entwickeln. Bisherige Systeme können die Grundversorgung an Insulin automatisch an die gemessenen Blutzuckerwerte anpassen. Eine komplett automatische Insulinversorgung ist allerdings noch nicht gelungen, hauptsächlich wegen des Unannounced-Meal (kurz UAM) Problems. Zu jeder Mahlzeit muss zusätzliches Insulin verabreicht werden, um zu hohe Blutzuckerwerte zu verhindern. Da die üblichen Insulinsorten langsamer auf den Blutzuckerspiegel wirken als Mahlzeiten, ist es essenziell, dass diese Dosis so früh wie möglich verabreicht wird. In einem vollständig automatischen System besteht also die Notwendigkeit Mahlzeiten zu erkennen.
 	
 	Unser Projekt dient als Prototyp zur Lösung des UAM Problems. Wir liefern einen beispielhaften Algorithmus, der die Menge einer Mahlzeit anhand der Steigung des Blutzuckerspiegels annähert. Unser Programm kann außerdem mit weiteren Algorithmen erweitert werden, und bietet so eine Umgebung zum Testen von verschiedenen Ansätzen. Unser Projekt ist auf Nightscout ausgelegt, auf dem viele künstliche Bauchspeicheldrüsen-Systeme basieren. In Nightscout können kostenlos mehrere Monate an Daten speichert werden, an denen die Mahlzeitenerkennung getestet werden kann, ohne die Gesundheit einer Person direkt zu gefährden. 
 	
@@ -113,7 +113,7 @@ Daten? \textbf{{\large TODO}}
 	\section{funktional}
 \begin{itemize}
 	\item Der Algorithmus muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen.  %Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%. 
-	 Überprüft wird das an dem gegebenem Datensatz, auf Abschnitten wo über einen Zeitraum von mindestens 6 Stunden durchgehend Blutzuckerdaten vorhanden sind. Also wo Messungen mindestens alle 5 Minuten vorkommen. Da die zu erkennenden Mahlzeiten nicht markiert sind, und dadurch ein direkter Vergleich nicht möglich ist, wird ein Blutzuckerverlauf anhand der bekannten Events und der berechneten Mahlzeiten generiert. Dieser soll zu jedem Zeitpunkt höchstens 10mg/ml von dem originalen Blutzuckerverlauf abweichen. Eine höhere Abweichung wird toleriert, wenn der Abschnitt eindeutig seltsames Verhalten aufweist, z.B. einen plötzlichen Einbruch des Blutzuckerspiegels.
+	 Überprüft wird das an dem gegebenem Datensatz, auf Abschnitten in denen über einen Zeitraum von mindestens 6 Stunden durchgehend Blutzuckerdaten vorhanden sind. In diesen fanden alle 5 Minuten Messungen statt. Da die zu erkennenden Mahlzeiten nicht markiert sind, und dadurch ein direkter Vergleich nicht möglich ist, wird ein Blutzuckerverlauf anhand der bekannten Events und der berechneten Mahlzeiten generiert. Dieser soll zu jedem Zeitpunkt höchstens 10mg/ml von dem originalen Blutzuckerverlauf abweichen. Eine höhere Abweichung wird toleriert, wenn der Abschnitt eindeutig seltsames Verhalten aufweist, z.B. einen plötzlichen Einbruch des Blutzuckerspiegels.
 	
  \begin{comment}
 ich hatte funktionale Anforderungen falsch in Erinnerung, ich lasse dass mal hier stehen, falls ich das wo anders brauche 
