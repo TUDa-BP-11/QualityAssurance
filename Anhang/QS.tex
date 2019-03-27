@@ -3,7 +3,25 @@
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
 \usepackage{parcolumns}
-\usepackage{color} 
+\usepackage{color}
+\usepackage{listings}
+
+\definecolor{javablue}{rgb}{0,0,0.4} % for strings
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javagreen}{rgb}{0,0.35,0} % comments
+
+\lstset{
+  language=Java,
+  breaklines=true,
+  frame=single,
+  stringstyle=\ttfamily,
+  numbers=left,
+  numberstyle=\tiny,
+  basicstyle=\footnotesize,
+  keywordstyle=\color{javapurple},
+  stringstyle=\color{javablue},
+  commentstyle=\color{javagreen}
+}
 
 \usepackage{hyperref}
 
@@ -130,5 +148,10 @@ Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollier
 	\section{Pull-Request-Review Protokoll}
 	
 	\section{GitHub Wiki Artikel Checkliste}
+	
+\section{Code Beispiele}
+\subsection{DataCursor}
+Der DataCursor kann benutzt werden um durch Nightscout Daten zu iterieren. Der Cursor lädt die Daten dafür in einen internen Puffer, der automatisch aufgefüllt wird. Der Nightscout Server gibt Daten immer in absteigender Reihenfolge sortiert nach Datum zurück, weswegen der DataCursor von einem \texttt{latest} Zeitpunkt absteigend zu einem \texttt{oldest} Zeitpunkt durch die Daten iteriert. Alle Nightscout API Pfade, welche bei einem HTTP GET Request ein Array an Daten zurück geben, können benutzt werden, solange die zurückgegebenen Daten ein Datumsfeld beinhalten.
+\lstinputlisting[title=DataCursor.java]{DataCursor.java}
 	
 \end{document}
