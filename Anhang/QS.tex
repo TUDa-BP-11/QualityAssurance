@@ -13,10 +13,12 @@
 \lstset{
   language=Java,
   breaklines=true,
+  breakatwhitespace=true,
   frame=single,
   stringstyle=\ttfamily,
   numbers=left,
   numberstyle=\tiny,
+  showstringspaces=false,
   basicstyle=\footnotesize,
   keywordstyle=\color{javapurple},
   stringstyle=\color{javablue},
@@ -151,7 +153,11 @@ Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollier
 	
 \section{Code Beispiele}
 \subsection{DataCursor}
-Der DataCursor kann benutzt werden um durch Nightscout Daten zu iterieren. Der Cursor lädt die Daten dafür in einen internen Puffer, der automatisch aufgefüllt wird. Der Nightscout Server gibt Daten immer in absteigender Reihenfolge sortiert nach Datum zurück, weswegen der DataCursor von einem \texttt{latest} Zeitpunkt absteigend zu einem \texttt{oldest} Zeitpunkt durch die Daten iteriert. Alle Nightscout API Pfade, welche bei einem HTTP GET Request ein Array an Daten zurück geben, können benutzt werden, solange die zurückgegebenen Daten ein Datumsfeld beinhalten.
+Der \texttt{DataCursor} kann benutzt werden um durch Nightscout Daten zu iterieren. Der Cursor lädt die Daten dafür in einen internen Puffer, der automatisch aufgefüllt wird. Der Nightscout Server gibt Daten immer in absteigender Reihenfolge sortiert nach Datum zurück, weswegen der \texttt{DataCursor} von einem \texttt{latest} Zeitpunkt absteigend zu einem \texttt{oldest} Zeitpunkt durch die Daten iteriert. Alle Nightscout API Pfade, welche bei einem HTTP GET Request ein Array an Daten zurück geben, können benutzt werden, solange die zurückgegebenen Daten ein Datumsfeld beinhalten.
 \lstinputlisting[title=DataCursor.java]{DataCursor.java}
+
+\subsection{NightscoutImporter}
+Der \texttt{NightscoutImporter} importiert Nightscout Daten und erzeugt eine Liste von \texttt{VaultEntry} Objekten. Er implementiert dabei die vom Auftraggeber vorgegebene \texttt{Importer} Klasse.
+\lstinputlisting[title=NightscoutImporter.java]{NightscoutImporter.java}
 	
 \end{document}
