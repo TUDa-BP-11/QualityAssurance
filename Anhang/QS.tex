@@ -161,18 +161,39 @@ Der \texttt{NightscoutImporter} importiert Nightscout Daten und erzeugt eine Lis
 \lstinputlisting[title=NightscoutImporter.java]{NightscoutImporter.java}
 
 \section{Coverity Scan}
-Die Konfiguration von \href{https://scan.coverity.com/projects/tuda-bp-11-opendiabetes-uam-heuristik}{Coverity Scan} erwies sich als schwierig, man konnte zwar Pfade angeben die nicht getestet werden sollen aber niemand von uns konnte die Einstellungen speichern. Andere Benutzer hatten das gleiche Problem und wir sind dazu übergegangen die Defekte aus dem Code den unser Auftrageber als "intentional" zu markieren. Defekte in den Tests haben wir dann dennoch angeschaut, sie konnten aber in allen Fällen als "false positiv" oder "intentional" markiert werden.\\
-Die häufigsten "False Positivs" waren String to Byte bzw. Byte to String Konvertierungen.
-Die meisten Defekte die gefunden wurden waren Variablen und Felder die nicht benutzt oder nur aktualisiert wurden, danach waren es Felder und Methoden die nicht als statisch markiert wurden obwohl sie so benutzt wurden. 
+Die Konfiguration von \href{https://scan.coverity.com/projects/tuda-bp-11-opendiabetes-uam-heuristik}{Coverity Scan} erwies sich als schwierig, denn es können zwar Pfade angeben werden, welche nicht getestet werden sollen, Änderungen an den Einstellungen lassen sich aber nicht speichern. In diversen Internetforen lässt sich beobachten, dass auch andere Benutzer das gleiche Problem haben, weswegen wir dazu übergegangen sind die Defekte aus dem Code unseres Auftragebers als ,,absichtlich'' zu markieren. Probleme in den Tests konnten in allen Fällen als ,,falsch-positiv'' oder ,,absichtlich'' markiert werden.\\
+Die häufigsten ,,falsch-positiven'' Ereignisse waren String to Byte bzw. Byte to String Konvertierungen.
+Die meisten Probleme die gefunden wurden waren Variablen und Felder die nicht benutzt oder nur aktualisiert wurden, danach waren es Felder und Methoden die nicht als statisch markiert wurden obwohl sie so benutzt wurden. Diese Probleme wurden behoben.
 
-\subsection{Bsp. gefundener Bug}
-In diesem Beispiel gibt die Funktion getRawBasalTreatments() null zurück und löst damit eine NullPointerException aus, da sie sehr kurz vor einem Scan erstellt wurde ist es keinem von uns vorher aufgefallen. 
-Bild einfügen!!!
+\subsection{Beispiel gefundener Bug}
+\label{sec:coverity_bug}
+In Bild~\ref{fig:bug} gibt die Funktion \texttt{getRawBasalTreatments()} null zurück und löst damit eine NullPointerException aus.
 
-\subsection{Bsp. False Positive}
-Hier wird !allFilesSet(config) zu false ausgewertet.
-Bild einfügen!!!
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth]{Coverity_Bug}
+\caption{NullPointerException Beispiel \ref{sec:coverity_bug}}
+\centering
+\label{fig:coverity_bug}
+\end{figure}
 
-Weiter unten wird das Inverse ,also allFilesSet(config) auch zu false ausgewertet.
-Bild einfügen!!!
+\subsection{Beispiel False Positive}
+\label{sec:coverity_fp}
+In Bild~\ref{fig:coverity_fp1} wird \texttt{!allFilesSet(config)} zu false ausgewertet.
+\\
+In Bild~\ref{fig:coverity_fp2} wird das Inverse, also \texttt{allFilesSet(config)} auch zu false ausgewertet.
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth]{Coverity_FP1}
+\caption{False Positive Beispiel \ref{sec:coverity_fp}}
+\centering
+\label{fig:coverity_fp1}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth]{Coverity_FP2}
+\caption{False Positive Beispiel \ref{sec:coverity_fp}}
+\centering
+\label{fig:coverity_fp2}
+\end{figure}
+
 \end{document}
