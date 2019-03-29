@@ -5,6 +5,7 @@
 \usepackage{parcolumns}
 \usepackage{color}
 \usepackage{listings}
+\usepackage[section]{placeins}
 
 \definecolor{javablue}{rgb}{0,0,0.4} % for strings
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
@@ -26,6 +27,11 @@
 }
 
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor={black},
+    urlcolor={blue}
+}
 
 \newcommand{\titlerow}[2]{
 	\begin{parcolumns}[colwidths={1=.15\linewidth}]{2}
@@ -138,19 +144,168 @@ Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollier
 	        
 	
 \appendix	
-	\chapter{Anhang}
-		
-		\textcolor{gray}{(Am Ende des Projekts nachzureichen)}\\
-		
-		\textcolor{gray}{Beleg für durchgeführte Maßnahmen, bzw. falls nicht durchgeführt eine Begründung wieso die Durchführung nicht möglich oder nicht erfolgt ist. \\
-		Weitere Anforderungen sind den Unterlagen und der Vorlesung zur Projektbegleitung zu entnehmen.}
+\chapter{Anhang}
+			
+\section{Pull-Request-Review Checkliste}
+Die aktuellste Version der Checkliste ist auch im \href{https://github.com/TUDa-BP-11/opendiabetes-uam-heuristik/wiki/Checklist-Pull-Request-Review}{GitHub Wiki} einsehbar.
+
+\paragraph{General}
+\begin{itemize}
+\item Travis CI Build successfull
+\item Coverity Scan executed \textit{(Hinzugefügt ab PR \#15)}
+\item Scope is appropriate \textit{(Hinzugefügt ab PR \#13)}
+	\begin{itemize}
+	\item if more than one feature is merged by this pull request, they have to be logically connected
+	\end{itemize}
+\item Module is appropriate
+	\begin{itemize}
+	\item the changes are applied in the lowest possible place on the hierarchy list of modules
+	\end{itemize}
+\item Access is appropriate \textit{(Hinzugefügt ab PR \#13)}
+	\begin{itemize}
+	\item all fields, methods and classes have the most restrictive access possible (private < protected < package < public)
+\item Documentation is complete
+	\end{itemize}
+	\begin{itemize}
+	\item all methods that are not private have appropriate JavaDoc
+	\item private methods should be documented if the method name does not immediately explain the methods purpose
+	\item getters and setters are excluded if the only thing they do is getting or setting an objects field
+	\end{itemize}
+\item Modularity is kept
+	\begin{itemize}
+	\item no cyclic references between modules are introduced
+	\item design patterns are applied (see below)
+		\begin{itemize}
+		\item main module: Strategy Pattern for algorithms and dataproviders
+		\item nsapi module: Template Method Pattern for parsers
+		\end{itemize}
+	\end{itemize}
+\item Style and Layout
+	\begin{itemize}
+	\item package and class names make sense, method names are self explanatory but short
+	\item easy to read and understand
+	\end{itemize}
+\end{itemize}
+
+\paragraph{Tests}
+\begin{itemize}
+\item All implemented tests are executed by travis
+	\begin{itemize}
+	\item a test that is known to be broken can be excluded from execution only, if another test tests the same feature
+	\item broken tests should be documented for why they are still needed (fix may be coming later, or they are kept for reference)
+	\end{itemize}
+\item All public methods are tested
+	\begin{itemize}
+	\item all methods, that are not getters and setters, have to be tested
+	\item exceptions to this rule have to be explained in detail
+	\end{itemize}
+\item Methods which have no restrictions on their arguments are tested with all possible arguments \textit{(Hinzugefügt ab PR \#13)}
+	\begin{itemize}
+	\item if an exhaustive test of all arguments is not possible, the arguments are randomized over the entire range of possible arguments
+	\end{itemize}
+\item Methods which have restrictions on their arguments are tested for appropriate error messages or exceptions if they are executed with invalid arguments \textit{(Hinzugefügt ab PR \#13)}
+\end{itemize}
+
+\paragraph{Design Patterns} \textit{(Hinzugefügt ab PR \#13)}
+\subparagraph{Strategy Pattern}
+\begin{itemize}
+\item The two strategy interfaces are:
+	\begin{itemize}
+	\item \texttt{Algorithm}
+		\begin{itemize}
+		\item This interface was changed to an abstract class during development. The strategy pattern still applies.
+		\end{itemize}
+	\item \texttt{DataProvider}
+	\end{itemize}
+\item The strategy implementations exclusively use their interface methods for communication with other classes
+\item The main program does not execute methods on conrete implementations of the strategy but only methods of the strategy interfaces (with the exception of the constructors)
+\end{itemize}
+
+\subparagraph{Template Method Pattern}
+\begin{itemize}
+\item The template interfaces are:
+	\begin{itemize}
+	\item \texttt{Parser<T>}
+	\begin{itemize}
+	\item method: \texttt{T parse(String)}
+	\end{itemize}
+	\end{itemize}
+\end{itemize}
 	
-	\section{Pull-Request-Review Checkliste}
+\section{Pull-Request-Review Protokoll}
+Die folgenden Protokolle sind in der Reihenfolge in welcher sie bearbeitet wurden und nicht in der Reihenfolge in welcher die dazugehörigen Pull Requests erstellt wurden.
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#3}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#4}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-4}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#13}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-13}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#15}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-15}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#16}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-16}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#18}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-18}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#43}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-43}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#45}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-45}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#46}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-46}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\caption{Pull Request \#47}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{pr-47}
+\end{figure}
 	
-	\section{Pull-Request-Review Protokoll}
-	
-	\section{GitHub Wiki Artikel Checkliste}
-	
+\section{GitHub Wiki Artikel Checkliste}
+	TODO
+
+\section{Design Pattern UML}
+Das folgende Diagramm stellt dar wie das Strategy Pattern im Algorithmus und im DataProvider umgesetzt ist.
+\begin{figure}[h]
+\centering
+\caption{Strategy Pattern}
+\includegraphics[width=1.0\textwidth,keepaspectratio]{UML_Algorithmen}
+\end{figure}
+
 \section{Code Beispiele}
 \subsection{DataCursor}
 Der \texttt{DataCursor} kann benutzt werden um durch Nightscout Daten zu iterieren. Der Cursor lädt die Daten dafür in einen internen Puffer, der automatisch aufgefüllt wird. Der Nightscout Server gibt Daten immer in absteigender Reihenfolge sortiert nach Datum zurück, weswegen der \texttt{DataCursor} von einem \texttt{latest} Zeitpunkt absteigend zu einem \texttt{oldest} Zeitpunkt durch die Daten iteriert. Alle Nightscout API Pfade, welche bei einem HTTP GET Request ein Array an Daten zurück geben, können benutzt werden, solange die zurückgegebenen Daten ein Datumsfeld beinhalten.
