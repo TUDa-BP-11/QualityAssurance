@@ -49,7 +49,7 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 	\item Skript zum Lesen und Schreiben von Daten in eine Nightscout Instanz	
 	\item Kommandozeilentool zum Lesen, Schreiben und Synchronisieren von Nightscout
 	\item Parser zum Überführen von Datensätzen aus dem Skript in Java
-	\item Algorithmus zur korrekten Berechnung von Kohlenhydraten
+	\item (mind. 1) Algorithmus zur korrekten Berechnung von Kohlenhydraten
 	\item Modifikation von Nightscout um angekündigte und berechnete Kohlenhydrate getrennt speichern  zu können.      %und darstellen
 	\item Plotten des resultierenden Blutzuckerverlaufs 
 	\item Kommandozeilentool, das Daten einliest und berechnete Kohlenhydrate und Plots ausgibt
@@ -120,36 +120,40 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
  \chapter{Anforderungen}
 	\section{funktional}
 \begin{itemize}
-	\item Der Algorithmus muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen.  %Dabei gilt eine Toleranz von $\pm$6gr, oder 10\%. 
+	\item Der Algorithmus muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. 
 	 Überprüft wird das an dem gegebenem Datensatz, auf Abschnitten in denen über einen Zeitraum von mindestens 6 Stunden durchgehend Blutzuckerdaten vorhanden sind. In diesen fanden alle 5 Minuten Messungen statt. Da die zu erkennenden Mahlzeiten nicht markiert sind, und dadurch ein direkter Vergleich nicht möglich ist, wird ein Blutzuckerverlauf anhand der bekannten Events und der berechneten Mahlzeiten generiert. Dieser soll zu jedem Zeitpunkt höchstens 10mg/ml von dem originalen Blutzuckerverlauf abweichen. Eine höhere Abweichung wird toleriert, wenn der Abschnitt eindeutig seltsames Verhalten aufweist, z.B. einen plötzlichen Einbruch des Blutzuckerspiegels.
 	
- \begin{comment}
-ich hatte funktionale Anforderungen falsch in Erinnerung, ich lasse dass mal hier stehen, falls ich das wo anders brauche 
- 	
-	\item Alle Programmteile müssen gegen die API programmiert sein die der Arbeitgeber bereitstellt
-	\item Zum Parsen von Argumenten soll die Library \url{http://www.martiansoftware.com/jsap/} verwendet werden.
-	\item Für das Plotten der Daten soll Python-Matplotlib verwendet werden
-	\item Bei dem Kommandozeilentool, das Daten einliest und berechnete Kohlenhydrate und Plots ausgibt, sollen die Einträge in einem Format sein, dass mit dem anderen Tool zu Nightscout hochgeladen werden kann.
-\end{comment}	
-	
+\item Der Synchronizer muss zwei Nightscout Insztanzen vergleichen und alle Einträge aus dem ersten, die aus dem zweiten fehlen, in das zweite einfügen.
+
+\item Verschiedene Datenquellen müssen einbindbar sein. Lesen aus Nightscout oder einer Datei soll unterstützt sein.
+
+\item Der Parser soll Nightscout Daten im JSON Format auf einheitliche, vom Arbeitgeber vorgegebene, Datentypen abbilden.
+
+
+
+\item Darstellung der Daten/Mahlzeiten in Nightscout siehe User-Stories
+
 \end{itemize}
-	\textbf{{\large TODO ARRRRGH}}
+
 	
 	\section{nicht-funktional}
 \begin{itemize}
-	\item Das Programm muss auf einem PI Zero in angemessener Zeit laufen
+	\item Das Programm muss auf einem PI Zero in angemessener Zeit laufen. Angemessen bedeutetd dabei unter 5 Minuten. 
+	\begin{itemize}
+	\item Anmerkung: Da uns kein PI Zero zur Verfügung steht, und der Arbeitgeber nicht allzu großen Wert darauf legt, wird diese Anforderung während des Projektes fallen gelassen. 
+	\end{itemize}
 	
 \end{itemize}
-	\textbf{{\large TODO}}
-	
+
 {\let\clearpage\relax	\chapter{Qualitätssicherung}}
 
 	Siehe QS-Dokument.
 
-	
+	\begin{comment}
 {\let\clearpage\relax	\chapter{Risikomanagement}}
 
 notwendig?  \textbf{{\large TODO}}
+\end{comment}
 	
 {\let\clearpage\relax	\chapter{Rechtliches}}
 	
