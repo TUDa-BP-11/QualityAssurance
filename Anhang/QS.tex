@@ -501,7 +501,7 @@ Die folgenden Pull-Request-Review Protokolle wurden während dem Projekt erstell
 Die vollständige Liste aller Tests ist in Bild~\ref{fig:all-tests} nachzuvollziehen.
 Die Code-Coverage der Tests wurde zu unterschiedlichen Zeitpunkten aber insbesondere bei den verschiedenen Pull-Request-Reviews überprüft. Beispiele können in den folgenden Bildern nachvollzogen werden: \ref{pr-cov:13}, \ref{pr-cov:15}, \ref{pr-cov:16}, \ref{pr-cov:18}, \ref{pr-cov:18}, \ref{pr-cov:43}, \ref{pr-cov:47}, \ref{pr-cov:51}, \ref{pr-cov:54}
 
-Ziel der Coverage war es für alle API-Methoden 100\% Methoden-Abdeckung zu erreichen. Nicht abgedeckte Zeilen sind vor allem \texttt{try-catch}-Blöcke für Sonderfälle wie unzeichende Dateizugriffs-Rechte, Serverprobleme etc welche nicht zuverlässig per JUnit testbar waren. Zusätzlich wurden die ,,Main'' Klassen und der Plotter nicht mit Unit Tests getestet sondern die funktionalen Anforderungen mit manuellen Tests überprüft.
+Ziel der Coverage war es für alle API-Methoden 100\% Methoden-Abdeckung zu erreichen. Nicht abgedeckte Zeilen sind vor allem \texttt{try-catch}-Blöcke für Sonderfälle wie unzeichende Dateizugriffs-Rechte, Serverprobleme etc welche nicht zuverlässig per JUnit testbar waren. Zusätzlich wurden die ,,Main'' Klassen und der Plotter nicht mit Unit Tests getestet sondern die funktionalen Anforderungen mit manuellen Tests überprüft. Die Unit Tests der Algorithmen sind nicht sehr aussagekräftig, viel wichtiger war anhand von anonymisierten Daten zu ermitteln wie groß jeweils der Fehler der errechneten Mahlzeiten und der daraus resultierenden Blutzuckerkurve ist. 
 
 \begin{figure}[h]
 \centering
