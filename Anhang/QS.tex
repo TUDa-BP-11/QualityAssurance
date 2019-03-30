@@ -497,6 +497,19 @@ Die folgenden Pull-Request-Review Protokolle wurden während dem Projekt erstell
 \item Jedes Feature wird am Anfang seiner Seite kurz erklärt
 \end{itemize}
 
+\section{Unit Tests und Coverage}
+Die vollständige Liste aller Tests ist in Bild~\ref{fig:all-tests} nachzuvollziehen.
+Die Code-Coverage der Tests wurde zu unterschiedlichen Zeitpunkten aber insbesondere bei den verschiedenen Pull-Request-Reviews überprüft. Beispiele können in den folgenden Bildern nachvollzogen werden: \ref{pr-cov:13}, \ref{pr-cov:15}, \ref{pr-cov:16}, \ref{pr-cov:18}, \ref{pr-cov:18}, \ref{pr-cov:43}, \ref{pr-cov:47}, \ref{pr-cov:51}, \ref{pr-cov:54}
+
+Ziel der Coverage war es für alle API-Methoden 100\% Methoden-Abdeckung zu erreichen. Nicht abgedeckte Zeilen sind vor allem \texttt{try-catch}-Blöcke für Sonderfälle wie unzeichende Dateizugriffs-Rechte, Serverprobleme etc welche nicht zuverlässig per JUnit testbar waren. Zusätzlich wurden die ,,Main'' Klassen und der Plotter nicht mit Unit Tests getestet sondern die funktionalen Anforderungen mit manuellen Tests überprüft.
+
+\begin{figure}[h]
+\centering
+\caption{All Tests}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{all-tests}
+\label{fig:all-tests}
+\end{figure}
+
 \section{Code Beispiele}
 \subsection{DataCursor}
 Der \texttt{DataCursor} kann benutzt werden um durch Nightscout Daten zu iterieren. Der Cursor lädt die Daten dafür in einen internen Puffer, der automatisch aufgefüllt wird. Der Nightscout Server gibt Daten immer in absteigender Reihenfolge sortiert nach Datum zurück, weswegen der \texttt{DataCursor} von einem \texttt{latest} Zeitpunkt absteigend zu einem \texttt{oldest} Zeitpunkt durch die Daten iteriert. Alle Nightscout API Pfade, welche bei einem HTTP GET Request ein Array an Daten zurück geben, können benutzt werden, solange die zurückgegebenen Daten ein Datumsfeld beinhalten.
