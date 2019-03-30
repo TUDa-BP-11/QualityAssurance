@@ -6,6 +6,7 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage[section]{placeins}
+\usepackage{pdfpages}
 
 \definecolor{javablue}{rgb}{0,0,0.4} % for strings
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
@@ -520,5 +521,24 @@ In Bild~\ref{fig:coverity_fp2} wird das Inverse, also \texttt{allFilesSet(config
 \centering
 \label{fig:coverity_fp2}
 \end{figure}
+
+\section{Build Logs Beispiele}
+
+\subsection{Build PR45 failed}
+
+\includepdf[pages=-,scale=.9]{Build_PR45_failed.pdf}
+
+\subsection{Build PR45 passed}
+
+\includepdf[pages=-,scale=.9]{Build_PR45_passed.pdf}
+
+\subsection{Build453 failed}
+
+\includepdf[pages=-,scale=.9]{Build453_failed.pdf}
+
+\subsection{Build457 passed}
+
+\includepdf[pages=-,scale=.9]{Build457_passed.pdf}
+
 
 \end{document}
