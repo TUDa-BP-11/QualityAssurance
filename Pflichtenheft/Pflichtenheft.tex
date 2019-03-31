@@ -125,7 +125,7 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 	\item Der Algorithmus muss die Größe der stattfindenden Mahlzeiten (Kohlenhydrate in Gramm) korrekt erkennen. 
 	 Überprüft wird das an dem gegebenem Datensatz, auf Abschnitten in denen über einen Zeitraum von mindestens 6 Stunden durchgehend Blutzuckerdaten vorhanden sind. In diesen finden alle 5 Minuten Messungen statt. Da die zu erkennenden Mahlzeiten nicht markiert sind, und dadurch ein direkter Vergleich nicht möglich ist, wird ein Blutzuckerverlauf anhand der bekannten Events und der berechneten Mahlzeiten generiert. Dieser soll zu jedem Zeitpunkt höchstens 10\% von dem originalen Blutzuckerverlauf abweichen. Eine höhere Abweichung wird toleriert, wenn der Abschnitt eindeutig seltsames Verhalten aufweist, z.B. einen plötzlichen Einbruch des Blutzuckerspiegels.
 	
-\item Der Synchronizer muss zwei Nightscout Insztanzen vergleichen und alle Einträge aus dem ersten, die aus dem zweiten fehlen, in das zweite einfügen.
+\item Der Synchronizer muss zwei Nightscout Instanzen vergleichen und alle Einträge aus der ersten, die in der zweiten fehlen, in die zweite einfügen.
 
 \item Verschiedene Datenquellen müssen einbindbar sein. Lesen aus Nightscout und einer Datei soll unterstützt sein.
 
@@ -145,7 +145,7 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 	\item Anmerkung: Da uns kein PI Zero zur Verfügung steht, und der Arbeitgeber nicht allzu großen Wert darauf legt, wird diese Anforderung während des Projektes fallen gelassen. 
 	\end{itemize}
 	
-	\item Das Wiki in GitHub muss eine Einführung und Übersicht für das Projekt und Anleitungen für zukünftiges Einbinden von neuen data providern und Algorithmen enthalten. Außerdem muss das Vorgehen von den genutzten Algorithmen erklärt werden.
+	\item Das Wiki in GitHub muss eine Einführung und Übersicht für das Projekt und Anleitungen für zukünftiges Einbinden von neuen DataProvidern und Algorithmen enthalten. Außerdem muss das Vorgehen von den genutzten Algorithmen erklärt werden.
 	
 \end{itemize}
 
