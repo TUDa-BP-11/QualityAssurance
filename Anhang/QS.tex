@@ -670,13 +670,6 @@ Die Code-Coverage der Tests wurde zu unterschiedlichen Zeitpunkten aber insbeson
 
 Ziel der Coverage war es für alle API-Methoden 100\% Methoden-Abdeckung zu erreichen. Nicht abgedeckte Zeilen sind vor allem \texttt{try-catch}-Blöcke für Sonderfälle wie unzeichende Dateizugriffs-Rechte, Serverprobleme etc. welche nicht zuverlässig mit Unit Tests testbar waren. Zusätzlich wurden die ,,Main'' Klassen und der Plotter nicht mit Unit Tests getestet sondern die funktionalen Anforderungen mit manuellen Tests überprüft.
 
-\subsection{Tests der Algorithmen}
-Die Unit Tests der Algorithmen sind zur Beurteilung der Qualität der Algorithmen nicht sehr aussagekräftig, viel wichtiger war anhand von anonymisierten Daten zu ermitteln wie groß der jeweilige Fehler der errechneten Mahlzeiten und der daraus resultierenden Blutzuckerkurve ist. Die Fehlertoleranz hierfür wurde uns vom Auftraggeber vorgegeben (10\% Fehler über einen Zeitraum von sechs Stunden relativ zur echten Blutzuckerkurve). Diese Toleranz kann aber nicht für automatische Tests verwendet werden, da in den Testdaten sowohl Messfehler vorhanden sind, als auch größere Zeitsprünge, welche das Ergebnis verfälschen. Dies bedeutet dass Tests auf echten Daten immer manuell beurteilt werden mussten.
-
-Anhand der entstandenen Statistiken konnten wir schnell beurteilen welche Ansätze vielversprechende Resultate bringen werden und welche Ansätze nicht weiter verfolgt werden mussten, da sie wahrscheinlich nie die geforderten Kriterien erfüllen würden. So hatte zum Beispiel die anfangs noch vielversprechende Idee, das Rauschen in den Daten mit einem Filter zu minimieren, im Endergebnis einen gegenteiligen Effekt.
-
-Trotzdem wurde für sämtliche Schritte der den Algorithmen zu Grunde liegenden mathematischen Modelle Unit Tests geschrieben (Beispiel: TestPredictions.java \ref{lst:jacobi}).
-
 \begin{figure}[h]
 \centering
 \caption{All Tests}
@@ -684,7 +677,22 @@ Trotzdem wurde für sämtliche Schritte der den Algorithmen zu Grunde liegenden 
 \label{fig:all-tests}
 \end{figure}
 
-\lstinputlisting[title=TestPredictions.java,label=lst:jacobi]{JacobiTests.java}
+\subsection{Tests der Algorithmen}
+Die Unit Tests der Algorithmen sind zur Beurteilung der Qualität der Algorithmen nicht sehr aussagekräftig, viel wichtiger war anhand von anonymisierten Daten zu ermitteln wie groß der jeweilige Fehler der errechneten Mahlzeiten und der daraus resultierenden Blutzuckerkurve ist. Die Fehlertoleranz hierfür wurde uns vom Auftraggeber vorgegeben (10\% Fehler über einen Zeitraum von sechs Stunden relativ zur echten Blutzuckerkurve). Diese Toleranz kann aber nicht für automatische Tests verwendet werden, da in den Testdaten sowohl Messfehler vorhanden sind, als auch größere Zeitsprünge, welche das Ergebnis verfälschen. Dies bedeutet dass Tests auf echten Daten immer manuell beurteilt werden mussten.
+
+Anhand der entstandenen Statistiken konnten wir schnell beurteilen welche Ansätze vielversprechende Resultate bringen werden und welche Ansätze nicht weiter verfolgt werden mussten, da sie wahrscheinlich nie die geforderten Kriterien erfüllen würden. So hatte zum Beispiel die anfangs noch vielversprechende Idee, das Rauschen in den Daten mit einem Filter zu minimieren, im Endergebnis einen gegenteiligen Effekt.
+
+Trotzdem wurde für sämtliche Schritte der den Algorithmen zu Grunde liegenden mathematischen Modelle Unit Tests geschrieben (Beispiel: TestPredictions.java \ref{lst:jacobi}).
+
+\subsection{Test Beispiele}
+
+\lstinputlisting[title=TestPredictions.java,label=lst:jacobi]{TestPredictions.java}
+
+\lstinputlisting[title=NSApiTest.java]{NSApiTest.java}
+
+\lstinputlisting[title=AdjustBasalTreatmentsTest.java]{AdjustBasalTreatmentsTest.java}
+
+\lstinputlisting[title=BasalCalcDifferenceTest.java]{BasalCalcDifferenceTest.java}
 
 \section{Code Beispiele}
 \subsection{DataCursor}
