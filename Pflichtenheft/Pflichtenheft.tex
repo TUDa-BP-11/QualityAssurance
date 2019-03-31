@@ -79,7 +79,7 @@ Folgende Punkte müssen implementiert bzw. erstellt werden:\\
 	
  	\chapter{Einsatz}
 	
-	Die Open Source Community OpenAPS unterstüzt Versuche eine künstliche Bauchspeicheldrüse zu entwickeln. Bisherige Systeme können die Grundversorgung an Insulin automatisch an die gemessenen Blutzuckerwerte anpassen. Eine komplett automatische Insulinversorgung ist allerdings noch nicht gelungen, hauptsächlich wegen des Unannounced-Meal (kurz UAM) Problems. Zu jeder Mahlzeit muss zusätzliches Insulin verabreicht werden, um zu hohe Blutzuckerwerte zu verhindern. Da die üblichen Insulinsorten langsamer auf den Blutzuckerspiegel wirken als Mahlzeiten, ist es essenziell, dass diese Dosis so früh wie möglich verabreicht wird. In einem vollständig automatischen System besteht also die Notwendigkeit Mahlzeiten zu erkennen.
+	Die Open Source Community OpenAPS unterstüzt Versuche eine künstliche Bauchspeicheldrüse zu entwickeln. Bisherige Systeme können die Grundversorgung an Insulin automatisch an die gemessenen Blutzuckerwerte anpassen. Eine komplett automatische Insulinversorgung ist allerdings noch nicht gelungen, hauptsächlich wegen des Unannounced-Meal (kurz UAM) Problems. Zu jeder Mahlzeit muss zusätzliches Insulin verabreicht werden, um zu hohe Blutzuckerwerte zu verhindern. Da die üblichen Insulinarten langsamer auf den Blutzuckerspiegel wirken als Mahlzeiten, ist es essenziell, dass diese Dosis so früh wie möglich verabreicht wird. In einem vollständig automatischen System besteht also die Notwendigkeit Mahlzeiten zu erkennen.
 	
 	Unser Projekt dient als Prototyp zur Lösung des UAM Problems. Wir liefern einen beispielhaften Algorithmus, der die Menge einer Mahlzeit anhand der Steigung des Blutzuckerspiegels annähert. Unser Programm kann außerdem mit weiteren Algorithmen erweitert werden, und bietet so eine Umgebung zum Testen von verschiedenen Ansätzen. Unser Projekt ist auf Nightscout ausgelegt, auf dem viele künstliche Bauchspeicheldrüsen-Systeme basieren. In Nightscout können kostenlos mehrere Monate an Daten speichert werden, an denen die Mahlzeitenerkennung getestet werden kann, ohne die Gesundheit einer Person direkt zu gefährden. 
 	
@@ -94,6 +94,8 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 	\item Nightscout um eigene Instanzen aufzusetzen 
 	\item Beschreibungen der Tools						% wait, welche Tools?
 	\item Paper mit Modell zum Einfluss von Insulin und Kohlenhydrate auf den Blutzuckerspiegel
+	\item Der VaultEntry Datentyp, der zum Parsen verwendet werden soll	
+	
 \end{itemize}
 	
 	
@@ -111,7 +113,7 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 \includegraphics[width=1\textwidth]{SequenzdiagrammAlgorithmus.png}
 
 \newpage
-\section*{Ablauf synchronizieren von Daten:}
+\section*{Ablauf synchronisieren von Daten:}
 \includegraphics[width=1\textwidth]{SequenzdiagrammSynchronizer.png}
 
 
@@ -131,6 +133,7 @@ Für das Projekt stehen folgende Infrastrukturen zur Verfügung:
 
 
 \item Darstellung der Daten/Mahlzeiten in Nightscout siehe User-Stories
+\item Darstellung der entstandenen Blutzuckerkurve siehe User-Stories
 
 \end{itemize}
 
