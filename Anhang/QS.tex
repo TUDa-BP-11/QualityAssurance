@@ -146,6 +146,12 @@ Bei der Kontrolle von Pull-Requests auf den Master Branch achtet die kontrollier
 	
 \appendix	
 \chapter{Anhang}
+
+\section{Änderungen gegenüber der Erstabgabe}
+Seit der ersten Abgabe dieses Qualitätssicherungsdokuments gab es die folgenden Änderungen:
+\begin{itemize}
+\item Modularität: Die Klasse \texttt{Algorithm} war zunächst als Interface geplant, wurde aber schlussendlich als abstrakte Klasse realisiert um Doppelungen in den einzelnen Algorithmen zu reduzieren. An der Modularität ändert sich hierdurch nichts.
+\end{itemize}
 			
 \section{Pull-Request-Review Checkliste}
 Die aktuellste Version der Checkliste ist auch im \href{https://github.com/TUDa-BP-11/opendiabetes-uam-heuristik/wiki/Checklist-Pull-Request-Review}{GitHub Wiki} einsehbar.
@@ -702,6 +708,14 @@ Der \texttt{DataCursor} kann benutzt werden um durch Nightscout Daten zu iterier
 \subsection{NightscoutImporter}
 Der \texttt{NightscoutImporter} importiert Nightscout Daten und erzeugt eine Liste von \texttt{VaultEntry} Objekten. Er implementiert dabei die vom Auftraggeber vorgegebene \texttt{Importer} Klasse.
 \lstinputlisting[title=NightscoutImporter.java]{NightscoutImporter.java}
+
+\subsection{Predictions}
+Die \texttt{Predictions} Klasse ist eine Sammlung von Implementationen mathematischer Modelle die den Algorithmen zu Grunde liegen.
+\lstinputlisting[title=Predictions.java]{Predictions.java}
+
+\subsection{BasalCalculatorTools}
+Die \texttt{BasalCalculatorTools} Klasse dient zur Berechnung von Basal Insulin Behandlungen welche immer mit dem Basal Profil des Patienten verrechnet werden müssen.
+\lstinputlisting[title=BasalCalculatorTools.java]{BasalCalculatorTools.java}
 
 \section{Coverity Scan}
 Die Konfiguration von \href{https://scan.coverity.com/projects/tuda-bp-11-opendiabetes-uam-heuristik}{Coverity Scan} erwies sich als schwierig, denn es können zwar Pfade angeben werden, welche nicht getestet werden sollen, Änderungen an den Einstellungen lassen sich aber nicht speichern. In diversen Internetforen lässt sich beobachten, dass auch andere Benutzer das gleiche Problem haben, weswegen wir dazu übergegangen sind die Defekte aus dem Code unseres Auftragebers als ,,absichtlich'' zu markieren. Probleme in den Tests konnten in allen Fällen als ,,falsch-positiv'' oder ,,absichtlich'' markiert werden.\\

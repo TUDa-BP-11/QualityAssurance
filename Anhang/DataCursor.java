@@ -1,19 +1,3 @@
-package de.opendiabetes.vault.nsapi;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import de.opendiabetes.vault.nsapi.exception.NightscoutIOException;
-import de.opendiabetes.vault.nsapi.exception.NightscoutServerException;
-
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.Iterator;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;
-
-import static de.opendiabetes.vault.nsapi.NSApi.LOGGER;
-
 /**
  * A buffer for Nightscout data. Lazily loads objects from the server as needed. The internal buffer is refreshed
  * if it runs out of objects until the server does not return any more data.

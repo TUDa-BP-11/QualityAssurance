@@ -1,28 +1,3 @@
-package de.opendiabetes.vault.nsapi.importer;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
-import de.opendiabetes.vault.container.VaultEntry;
-import de.opendiabetes.vault.container.VaultEntryType;
-import de.opendiabetes.vault.importer.Importer;
-import de.opendiabetes.vault.nsapi.NSApi;
-import de.opendiabetes.vault.nsapi.exception.NightscoutDataException;
-import de.opendiabetes.vault.util.TimestampUtils;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.TemporalAccessor;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-
 /**
  * Imports JSON objects from a Nightscout server as {@link VaultEntry}s.
  */
